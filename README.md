@@ -235,6 +235,422 @@ export default function Question7() {
   );
 }
 ```
+
+---
+## Q8. How to loop on array/array of objects in React?
+
+### How to loop over array in React?
+```jsx 
+export default function Question8() {
+  return (
+    <>
+      <h1>How to loop on array in react ?</h1>
+      {["Home", "About", "Services", "Contact"].map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </>
+  );
+}
+```
+
+### How to loop over array of objects in React? 
+```jsx
+export default function Question8b() {
+  const users = [
+    {
+      id: 1,
+      name: "Rumaisa",
+      email: "rumaisa@gmail.com",
+    },
+    {
+      id: 2,
+      name: "Muzna",
+      email: "muzna@gmail.com",
+    },
+    {
+      id: 3,
+      name: "Eshal",
+      email: "eshal@gmail.com",
+    },
+  ];
+  return (
+    <>
+      <h1>How to loop over array of objects in react?</h1>
+      {users.map((user) => (
+        <div key={user.id}>
+          <p>Name : {user.name}</p>
+          <p>Email : {user.email}</p>
+        </div>
+      ))}
+    </>
+  );
+}
+```
+
+--- 
+## Q9. How to conditionally render an element or text in react ?
+```jsx 
+import { useState } from "react";
+
+export default function Question9() {
+  const [isTextVisible, setIsTextVisible] = useState(false);
+
+  const handleClick = () => {
+    setIsTextVisible((prev) => !prev);
+  };
+
+  return (
+    <>
+      <h1> How to conditionally render an element or text in react ?</h1>
+      <button onClick={handleClick}>Show Text</button>
+      {isTextVisible ? <p>Text is visible</p> : <p>No text to show</p>}
+    </>
+  );
+}
+```
+
+---
+## Q10. How to change styles based on condition in react ?
+```jsx
+import { useState } from "react";
+
+export default function Question10() {
+  const [color, setColor] = useState("pink");
+
+  const handleClick = () => {
+    setColor((prevColor) => (prevColor === "pink" ? "lightblue" : "pink"));
+  };
+
+  return (
+    <>
+      <h1>How to change styles based on condition in react ?</h1>
+      <button
+        style={{
+          backgroundColor: color,
+        }}
+        onClick={handleClick}
+      >
+        Click it to change the color of the button
+      </button>
+    </>
+  );
+}
+```
+
+--- 
+## Q11. How to show and hide data based on condition in react ?
+```jsx 
+import { useState } from "react";
+
+export default function Question11() {
+  const [isDataVisible, setIsDataVisible] = useState(true);
+
+  const handleClick = () => {
+    setIsDataVisible((prev) => !prev);
+  };
+
+  return (
+    <>
+      <h1>How to show and hide data based on condition in react ?</h1>
+      <button onClick={handleClick}>Click me to show and hide data</button>
+      {isDataVisible ? (
+        <>
+          {["Black", "Pink", "Red", "White", "Maroon"].map((color, index) => (
+            <p key={index}>{color}</p>
+          ))}
+        </>
+      ) : (
+        <p>No data to show</p>
+      )}
+    </>
+  );
+}
+```
+
+--- 
+## Q12a. Bind array to radio button in react ? 
+```jsx
+import React, { useState } from "react";
+
+function Question12() {
+  const options = ["React.js", "Next.js", "React Native", "Node js"];
+  const [selectedValue, setSelectedValue] = useState(options[0]);
+
+  const handleRadioChange = (value) => {
+    setSelectedValue(value);
+  };
+
+  return (
+    <>
+      <h1>Bind array to radio button in react ?</h1>
+      {options.map((option, index) => (
+        <div key={index}>
+          <input
+            type="radio"
+            id={option}
+            value={option}
+            checked={selectedValue === option}
+            onChange={() => handleRadioChange(option)}
+          />
+          <label htmlFor={option}>{option}</label>
+        </div>
+      ))}
+      <p>You checked the : {selectedValue}</p>
+    </>
+  );
+}
+
+export default Question12;
+```
+
+## Q12b. Bind array of objects to radio button in react ?
+```jsx
+import { useState } from "react";
+
+export default function Question12b() {
+  const [selectedValue, setSelectedValue] = useState("React.js");
+  const options = [
+    {
+      label: "React.js",
+      value: "react.js",
+    },
+    {
+      label: "Next.js",
+      value: "next.js",
+    },
+    {
+      label: "Node.js",
+      value: "node.js",
+    },
+    {
+      label: "Vue.js",
+      value: "vue.js",
+    },
+  ];
+
+  const handleRadioChange = (value) => {
+    setSelectedValue(value);
+  };
+
+  return (
+    <>
+      <h1>Bind array of objects to radio button in react ?</h1>
+      {options.map(({ label, value }, index) => (
+        <div key={index}>
+          <input
+            type="radio"
+            id={value}
+            value={value}
+            checked={selectedValue === label}
+            onChange={() => handleRadioChange(label)}
+          />
+          <label htmlFor={value}>{label}</label>
+        </div>
+      ))}
+      <p>You checked the : {selectedValue}</p>
+    </>
+  );
+}
+```
+
+--- 
+## Q13. Display radio button data selected by user in another textbox ?
+```jsx 
+import { useState } from "react";
+
+export default function Question13() {
+  const [selectedValue, setSelectedValue] = useState("React.js");
+  const options = [
+    {
+      label: "React.js",
+      value: "react.js",
+    },
+    {
+      label: "Next.js",
+      value: "next.js",
+    },
+    {
+      label: "Node.js",
+      value: "node.js",
+    },
+    {
+      label: "Vue.js",
+      value: "vue.js",
+    },
+  ];
+  const handleRadioChange = (value) => {
+    setSelectedValue(value);
+  };
+  return (
+    <>
+      <h1>Display radio button data selected by user in another textbox ?</h1>
+      <div>
+        {options.map(({ label, value }, index) => (
+          <div key={index}>
+            <input
+              type="radio"
+              id={value}
+              value={value}
+              checked={selectedValue === label}
+              onChange={() => handleRadioChange(label)}
+            />
+            <label htmlFor={value}>{label}</label>
+          </div>
+        ))}
+        <textarea
+          placeholder=""
+          style={{
+            width: "10%",
+            marginTop: "0.5em",
+          }}
+          defaultValue="React.js"
+          value={selectedValue}
+        />
+      </div>
+    </>
+  );
+}
+```
+
+--- 
+## Q14.  How to call a method when component is rendered for the first time in react ?
+```jsx 
+import { useEffect } from "react";
+
+export default function Question14() {
+  const getData = () => {
+    console.log("Component rendered for the first time, fetching data");
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <>
+      <h1>
+        How to call a method when component is rendered for the first time in
+        react ?
+      </h1>
+    </>
+  );
+}
+```
+
+--- 
+## Q15. Display keys and values of objects in a loop in react?
+```jsx 
+export default function Question15() {
+  const data = {
+    name: "Rumaisa",
+    age: 21,
+  };
+  const capitalizeKey = (str) => {
+    const newStr = str[0].toUpperCase() + str.slice(1);
+    return newStr;
+  };
+  return (
+    <>
+      <h1>Display keys and values of objects in a loop in react?</h1>
+      {Object.entries(data).map(([key, value], index) => (
+        <div key={index}>
+          <p>
+            {capitalizeKey(key)} : {value}
+          </p>
+        </div>
+      ))}
+    </>
+  );
+}
+```
+
+--- 
+## Q16. How to render a component on value change in react ?
+```jsx 
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  // the component will re-render whenever the count changes
+  const handleClick = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  return (
+    <>
+      <h1>How to render a component on value change in react ?</h1>
+      <button onClick={handleClick}>Click to increment the count</button>
+      <p>The count is : {count}</p>
+    </>
+  );
+}
+```
+
+## Q17. How to call a method on every re-render of a component in React?
+```jsx 
+import { useState, useMemo } from "react";
+
+export default function Question17() {
+  const [count, setCount] = useState(0);
+
+  // here I'm using this just for the explanation, otherwise there's no
+  // need to use this useffect hook because the component will re-render
+  // whenever the count state changes
+
+  useMemo(() => {
+    console.log("Component re-rendered!");
+  }, [count]);
+
+  return (
+    <>
+      <h1>How to call a method on every re-render of a component in React?</h1>
+      <button onClick={() => setCount(count + 1)}>Click to Re-render</button>
+      <p>Count: {count}</p>
+    </>
+  );
+}
+```
+
+---
+## Q18.  How to add data into useState array in functional component in react ?
+```jsx 
+import { useState } from "react";
+
+export default function Question18() {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      title: "Do assignment",
+    },
+    {
+      id: 2,
+      title: "Write article",
+    },
+  ]);
+  const handleAddTodo = () => {
+    const newTodo = {
+      id: 3,
+      title: "Do something",
+    };
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+  return (
+    <>
+      <h1>
+        How to add data into useState array in functional component in react ?
+      </h1>
+      {todos.map((todo) => (
+        <li>{todo.title}</li>
+      ))}
+      <button onClick={handleAddTodo}>Click here to add a todo</button>
+    </>
+  );
+}
+```
+
+---
+
 ## Contributing
 
 If you'd like to contribute and add more questions, follow these steps:
