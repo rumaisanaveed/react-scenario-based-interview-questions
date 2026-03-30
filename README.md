@@ -649,9 +649,6 @@ export default function Question18() {
 }
 ```
 
----
-## Q19. Create a search textbox filter ?
-
 ## Contributing
 
 If you'd like to contribute and add more questions, follow these steps:
